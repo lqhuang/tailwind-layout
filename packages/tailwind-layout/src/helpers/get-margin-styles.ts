@@ -1,12 +1,12 @@
-import classNames from 'classnames';
+import { cn } from '../utils'
 
-import { getResponsiveStyles } from './get-responsive-styles.js';
-import { mergeStyles } from './merge-styles.js';
-import { marginPropDefs } from '../props/margin.props.js';
+import { marginPropDefs } from '../props/margin.props.js'
+import { getResponsiveStyles } from './get-responsive-styles.js'
+import { mergeStyles } from './merge-styles.js'
 
-import type { MarginProps } from '../props/margin.props.js';
+import type { MarginProps } from '../props/margin.props.js'
 
-const marginValues = marginPropDefs.m.values;
+const marginValues = marginPropDefs.m.values
 
 export function getMarginStyles(props: MarginProps) {
   const [mClassNames, mCustomProperties] = getResponsiveStyles({
@@ -14,59 +14,59 @@ export function getMarginStyles(props: MarginProps) {
     customProperties: ['--margin'],
     propValues: marginValues,
     value: props.m,
-  });
+  })
 
   const [mxClassNames, mxCustomProperties] = getResponsiveStyles({
     className: 'rt-r-mx',
     customProperties: ['--margin-left', '--margin-right'],
     propValues: marginValues,
     value: props.mx,
-  });
+  })
 
   const [myClassNames, myCustomProperties] = getResponsiveStyles({
     className: 'rt-r-my',
     customProperties: ['--margin-top', '--margin-bottom'],
     propValues: marginValues,
     value: props.my,
-  });
+  })
 
   const [mtClassNames, mtCustomProperties] = getResponsiveStyles({
     className: 'rt-r-mt',
     customProperties: ['--margin-top'],
     propValues: marginValues,
     value: props.mt,
-  });
+  })
 
   const [mrClassNames, mrCustomProperties] = getResponsiveStyles({
     className: 'rt-r-mr',
     customProperties: ['--margin-right'],
     propValues: marginValues,
     value: props.mr,
-  });
+  })
 
   const [mbClassNames, mbCustomProperties] = getResponsiveStyles({
     className: 'rt-r-mb',
     customProperties: ['--margin-bottom'],
     propValues: marginValues,
     value: props.mb,
-  });
+  })
 
   const [mlClassNames, mlCustomProperties] = getResponsiveStyles({
     className: 'rt-r-ml',
     customProperties: ['--margin-left'],
     propValues: marginValues,
     value: props.ml,
-  });
+  })
 
   return [
-    classNames(
+    cn(
       mClassNames,
       mxClassNames,
       myClassNames,
       mtClassNames,
       mrClassNames,
       mbClassNames,
-      mlClassNames
+      mlClassNames,
     ),
     mergeStyles(
       mCustomProperties,
@@ -75,7 +75,7 @@ export function getMarginStyles(props: MarginProps) {
       mtCustomProperties,
       mrCustomProperties,
       mbCustomProperties,
-      mlCustomProperties
+      mlCustomProperties,
     ),
-  ] as const;
+  ] as const
 }

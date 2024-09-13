@@ -1,18 +1,29 @@
-import classNames from 'classnames';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import type * as React from 'react'
+import type { PropDef } from '../props/prop-def.js'
 
-import { getResponsiveClassNames, getResponsiveStyles } from './get-responsive-styles.js';
-import { isResponsiveObject } from './is-responsive-object.js';
-import { mergeStyles } from './merge-styles.js';
+import { cn } from '../utils'
 
-import type * as React from 'react';
-import type { PropDef } from '../props/prop-def.js';
+import {
+  getResponsiveClassNames,
+  getResponsiveStyles,
+} from './get-responsive-styles.js'
+import { isResponsiveObject } from './is-responsive-object.js'
+import { mergeStyles } from './merge-styles.js'
 
-type PropDefsWithClassName<T> = T extends Record<string, PropDef>
-  ? { [K in keyof T]: T[K] extends { className: string } ? K : never }[keyof T]
-  : never;
+type PropDefsWithClassName<T> =
+  T extends Record<string, PropDef>
+    ? {
+        [K in keyof T]: T[K] extends { className: string } ? K : never
+      }[keyof T]
+    : never
 
-function mergePropDefs<T extends Record<string, PropDef>[]>(...args: T): Record<string, PropDef> {
-  return Object.assign({}, ...args);
+function mergePropDefs<T extends Record<string, PropDef>[]>(
+  ...args: T
+): Record<string, PropDef> {
+  return Object.assign({}, ...args)
 }
 
 /**
@@ -22,59 +33,66 @@ function mergePropDefs<T extends Record<string, PropDef>[]>(...args: T): Record<
  * and `style` values. Also applies prop def defaults to every prop.
  */
 function extractProps<
-  P extends { className?: string; style?: React.CSSProperties; [key: string]: any },
-  T extends Record<string, PropDef>[]
+  P extends {
+    className?: string
+    style?: React.CSSProperties
+    [key: string]: any
+  },
+  T extends Record<string, PropDef>[],
 >(
   props: P,
   ...propDefs: T
-): Omit<P & { className?: string; style?: React.CSSProperties }, PropDefsWithClassName<T[number]>> {
-  let className: string | undefined;
-  let style: ReturnType<typeof mergeStyles>;
-  const extractedProps = { ...props };
-  const allPropDefs = mergePropDefs(...propDefs);
+): Omit<
+  P & { className?: string; style?: React.CSSProperties },
+  PropDefsWithClassName<T[number]>
+> {
+  let className: string | undefined
+  let style: ReturnType<typeof mergeStyles>
+  const extractedProps = { ...props }
+  const allPropDefs = mergePropDefs(...propDefs)
 
   for (const key in allPropDefs) {
-    let value = extractedProps[key];
-    const propDef = allPropDefs[key];
+    let value = extractedProps[key]
+    const propDef = allPropDefs[key]
 
     // Apply prop def defaults
     if (propDef.default !== undefined && value === undefined) {
-      value = propDef.default;
+      value = propDef.default
     }
 
     // Apply the default value if the value is not a valid enum value
     if (propDef.type === 'enum') {
-      const values = [propDef.default, ...propDef.values];
+      const values = [propDef.default, ...propDef.values]
 
       if (!values.includes(value) && !isResponsiveObject(value)) {
-        value = propDef.default;
+        value = propDef.default
       }
     }
 
     // Apply the value with defaults
-    (extractedProps as Record<string, any>)[key] = value;
+    ;(extractedProps as Record<string, any>)[key] = value
 
     if ('className' in propDef && propDef.className) {
-      delete extractedProps[key];
+      delete extractedProps[key]
 
-      const isResponsivePropDef = 'responsive' in propDef;
+      const isResponsivePropDef = 'responsive' in propDef
       // Make sure we are not threading through responsive values for non-responsive prop defs
       if (!value || (isResponsiveObject(value) && !isResponsivePropDef)) {
-        continue;
+        continue
       }
 
       if (isResponsiveObject(value)) {
         // Apply prop def defaults to the `initial` breakpoint
         if (propDef.default !== undefined && value.initial === undefined) {
-          value.initial = propDef.default;
+          value.initial = propDef.default
         }
 
         // Apply the default value to the `initial` breakpoint when it is not a valid enum value
         if (propDef.type === 'enum') {
-          const values = [propDef.default, ...propDef.values];
+          const values = [propDef.default, ...propDef.values]
 
           if (!values.includes(value.initial)) {
-            value.initial = propDef.default;
+            value.initial = propDef.default
           }
         }
       }
@@ -86,14 +104,14 @@ function extractProps<
           className: propDef.className,
           propValues: propDef.values,
           parseValue: propDef.parseValue,
-        });
+        })
 
-        className = classNames(className, propClassName);
-        continue;
+        className = cn(className, propClassName)
+        continue
       }
 
       if (propDef.type === 'string' || propDef.type === 'enum | string') {
-        const propDefValues = propDef.type === 'string' ? [] : propDef.values;
+        const propDefValues = propDef.type === 'string' ? [] : propDef.values
 
         const [propClassNames, propCustomProperties] = getResponsiveStyles({
           className: propDef.className,
@@ -101,24 +119,24 @@ function extractProps<
           propValues: propDefValues,
           parseValue: propDef.parseValue,
           value,
-        });
+        })
 
-        style = mergeStyles(style, propCustomProperties);
-        className = classNames(className, propClassNames);
-        continue;
+        style = mergeStyles(style, propCustomProperties)
+        className = cn(className, propClassNames)
+        continue
       }
 
       if (propDef.type === 'boolean' && value) {
         // TODO handle responsive boolean props
-        className = classNames(className, propDef.className);
-        continue;
+        className = cn(className, propDef.className)
+        continue
       }
     }
   }
 
-  extractedProps.className = classNames(className, props.className);
-  extractedProps.style = mergeStyles(style, props.style);
-  return extractedProps;
+  extractedProps.className = cn(className, props.className)
+  extractedProps.style = mergeStyles(style, props.style)
+  return extractedProps
 }
 
-export { extractProps };
+export { extractProps }

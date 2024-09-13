@@ -2,36 +2,23 @@
   "name": "@radix-ui/themes",
   "version": "0.1.0",
   "type": "commonjs",
-  "main": "./dist/cjs/index.js",
-  "types": "./dist/cjs/index.d.ts",
+  "main": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "module": "./dist/esm/index.js",
-  "style": "./styles.css",
   "exports": {
     ".": {
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      },
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
       }
     },
     "./helpers": {
-      "require": {
-        "types": "./dist/cjs/helpers/index.d.ts",
-        "default": "./dist/cjs/helpers/index.js"
-      },
       "import": {
         "types": "./dist/esm/helpers/index.d.ts",
         "default": "./dist/esm/helpers/index.js"
       }
     },
     "./props": {
-      "require": {
-        "types": "./dist/cjs/props/index.d.ts",
-        "default": "./dist/cjs/props/index.js"
-      },
       "import": {
         "types": "./dist/esm/props/index.d.ts",
         "default": "./dist/esm/props/index.js"
@@ -117,8 +104,10 @@
     "@radix-ui/react-use-callback-ref": "1.1.0",
     "@radix-ui/react-use-controllable-state": "1.1.0",
     "@radix-ui/react-visually-hidden": "1.1.0",
-    "classnames": "2.3.2",
-    "react-remove-scroll-bar": "2.3.4"
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss": "^3.4.10"
   },
   "peerDependencies": {
     "@types/react": "*",
@@ -158,12 +147,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://radix-ui.com/themes",
+  "homepage": "https://github.com/lqhuang/tailwind-layout",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/radix-ui/themes.git"
+    "url": "git+https://github.com/lqhuang/tailwind-layout.git"
   },
   "bugs": {
-    "url": "https://github.com/radix-ui/themes/issues"
+    "url": "https://github.com/lqhuang/tailwind-layout/issues"
   }
 }

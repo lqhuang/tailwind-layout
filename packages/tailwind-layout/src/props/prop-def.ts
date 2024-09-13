@@ -1,58 +1,58 @@
-import type React from 'react';
+import type * as React from "react"
 
 // Creates a union type of string literals with strings, but retains intellisense for the literals.
 // Union<string, 'foo' | 'bar'> => string | Omit<string, 'foo' | 'bar'>
-type Union<S = string, T extends string | number = string> = T | Omit<S, T>;
+type Union<S = string, T extends string | number = string> = T | Omit<S, T>
 
-const breakpoints = ['initial', 'xs', 'sm', 'md', 'lg', 'xl'] as const;
-type Breakpoint = (typeof breakpoints)[number];
-type Responsive<T> = T | Partial<Record<Breakpoint, T>>;
+const breakpoints = ["initial", "xs", "sm", "md", "lg", "xl"] as const
+type Breakpoint = (typeof breakpoints)[number]
+type Responsive<T> = T | Partial<Record<Breakpoint, T>>
 
 type BooleanPropDef = {
-  type: 'boolean';
-  default?: boolean;
-  required?: boolean;
-  className?: string;
-};
+  type: "boolean"
+  default?: boolean
+  required?: boolean
+  className?: string
+}
 type StringPropDef = {
-  type: 'string';
-  default?: string;
-  required?: boolean;
-};
+  type: "string"
+  default?: string
+  required?: boolean
+}
 type ReactNodePropDef = {
-  type: 'ReactNode';
-  default?: React.ReactNode;
-  required?: boolean;
-};
+  type: "ReactNode"
+  default?: React.ReactNode
+  required?: boolean
+}
 type EnumPropDef<T> = {
-  type: 'enum';
-  values: readonly T[];
-  default?: T;
-  required?: boolean;
-};
+  type: "enum"
+  values: readonly T[]
+  default?: T
+  required?: boolean
+}
 type EnumOrStringPropDef<T> = {
-  type: 'enum | string';
-  values: readonly T[];
-  default?: T | string;
-  required?: boolean;
-};
+  type: "enum | string"
+  values: readonly T[]
+  default?: T | string
+  required?: boolean
+}
 
 type NonStylingPropDef = {
-  className?: never;
-  customProperties?: never;
-  parseValue?: never;
-};
+  prefix?: never
+  customProperties?: never
+  parseValue?: never
+}
 
 type StylingPropDef = {
-  className: string;
-  parseValue?: (value: string) => string | undefined;
-};
+  prefix: string
+  parseValue?: (value: string) => string | undefined
+}
 
 type ArbitraryStylingPropDef = {
-  className: string;
-  customProperties: `--${string}`[];
-  parseValue?: (value: string) => string | undefined;
-};
+  prefix: string
+  customProperties: `--${string}`[]
+  parseValue?: (value: string) => string | undefined
+}
 
 type RegularPropDef<T> =
   | ReactNodePropDef
@@ -62,9 +62,9 @@ type RegularPropDef<T> =
   | (EnumPropDef<T> & StylingPropDef)
   | (EnumPropDef<T> & NonStylingPropDef)
   | (EnumOrStringPropDef<T> & ArbitraryStylingPropDef)
-  | (EnumOrStringPropDef<T> & NonStylingPropDef);
-type ResponsivePropDef<T = any> = RegularPropDef<T> & { responsive: true };
-type PropDef<T = any> = RegularPropDef<T> | ResponsivePropDef<T>;
+  | (EnumOrStringPropDef<T> & NonStylingPropDef)
+type ResponsivePropDef<T = unknown> = RegularPropDef<T> & { responsive: true }
+type PropDef<T = unknown> = RegularPropDef<T> | ResponsivePropDef<T>
 
 // prettier-ignore
 type GetPropDefType<Def> =
@@ -77,16 +77,11 @@ type GetPropDefType<Def> =
   : never;
 
 type GetPropDefTypes<P> = {
-  [K in keyof P]?: GetPropDefType<P[K]>;
-};
+  [K in keyof P]?: GetPropDefType<P[K]>
+}
 
-export { breakpoints };
-export type {
-  PropDef,
-  GetPropDefTypes,
-  ResponsivePropDef,
-  //
-  Breakpoint,
-  Responsive,
-  Union,
-};
+export { breakpoints }
+
+export type { GetPropDefTypes, PropDef, ResponsivePropDef }
+
+export type { Breakpoint, Responsive, Union }

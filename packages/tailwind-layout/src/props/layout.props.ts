@@ -1,15 +1,21 @@
-import { paddingPropDefs } from './padding.props.js';
-import { heightPropDefs } from './height.props.js';
-import { widthPropDefs } from './width.props.js';
+import { heightPropDefs } from "./height.props.js"
+import { paddingPropDefs } from "./padding.props.js"
+import { widthPropDefs } from "./width.props.js"
 
-import type { PropDef, GetPropDefTypes } from './prop-def.js';
+import type { GetPropDefTypes, PropDef } from "./prop-def.js"
 
-const overflowValues = ['visible', 'hidden', 'clip', 'scroll', 'auto'] as const;
-const positionValues = ['static', 'relative', 'absolute', 'fixed', 'sticky'] as const;
+const overflowValues = ["visible", "hidden", "clip", "scroll", "auto"] as const
+const positionValues = [
+  "static",
+  "fixed",
+  "absolute",
+  "relative",
+  "sticky",
+] as const
 // prettier-ignore
 const positionEdgeValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9'] as const;
-const flexShrinkValues = ['0', '1'] as const;
-const flexGrowValues = ['0', '1'] as const;
+const flexShrinkValues = ["0", "1"] as const
+const flexGrowValues = ["0", "1"] as const
 
 const layoutPropDefs = {
   ...paddingPropDefs,
@@ -24,11 +30,11 @@ const layoutPropDefs = {
    * position={{ sm: 'absolute', lg: 'sticky' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/position
+   * https://tailwindcss.com/docs/position
    */
   position: {
-    type: 'enum',
-    className: 'rt-r-position',
+    type: "enum",
+    prefix: undefined,
     values: positionValues,
     responsive: true,
   },
@@ -45,9 +51,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/inset
    */
   inset: {
-    type: 'enum | string',
-    className: 'rt-r-inset',
-    customProperties: ['--inset'],
+    type: "enum | string",
+    prefix: "inset",
+    customProperties: ["--inset"],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -64,9 +70,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/top
    */
   top: {
-    type: 'enum | string',
-    className: 'rt-r-top',
-    customProperties: ['--top'],
+    type: "enum | string",
+    prefix: "top",
+    customProperties: ["--top"],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -83,9 +89,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/right
    */
   right: {
-    type: 'enum | string',
-    className: 'rt-r-right',
-    customProperties: ['--right'],
+    type: "enum | string",
+    prefix: "right",
+    customProperties: ["--right"],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -102,9 +108,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
    */
   bottom: {
-    type: 'enum | string',
-    className: 'rt-r-bottom',
-    customProperties: ['--bottom'],
+    type: "enum | string",
+    prefix: "bottom",
+    customProperties: ["--bottom"],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -121,9 +127,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/left
    */
   left: {
-    type: 'enum | string',
-    className: 'rt-r-left',
-    customProperties: ['--left'],
+    type: "enum | string",
+    prefix: "left",
+    customProperties: ["--left"],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -136,11 +142,11 @@ const layoutPropDefs = {
    * overflow={{ sm: 'hidden', lg: 'visible' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+   * https://tailwindcss.com/docs/overflow
    */
   overflow: {
-    type: 'enum',
-    className: 'rt-r-overflow',
+    type: "enum",
+    prefix: "overflow",
     values: overflowValues,
     responsive: true,
   },
@@ -153,11 +159,11 @@ const layoutPropDefs = {
    * overflowX={{ sm: 'hidden', md: 'visible' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+   * https://tailwindcss.com/docs/overflow
    */
   overflowX: {
-    type: 'enum',
-    className: 'rt-r-ox',
+    type: "enum",
+    prefix: "ox",
     values: overflowValues,
     responsive: true,
   },
@@ -170,11 +176,11 @@ const layoutPropDefs = {
    * overflowY={{ sm: 'hidden', md: 'visible' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+   * https://tailwindcss.com/docs/overflow
    */
   overflowY: {
-    type: 'enum',
-    className: 'rt-r-oy',
+    type: "enum",
+    prefix: "oy",
     values: overflowValues,
     responsive: true,
   },
@@ -190,12 +196,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis
    */
-  flexBasis: {
-    type: 'string',
-    className: 'rt-r-fb',
-    customProperties: ['--flex-basis'],
-    responsive: true,
-  },
+  // flexBasis: {
+  //   type: "string",
+  //   prefix: "basis",
+  //   customProperties: ["--flex-basis"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **flex-shrink** property.
    * Supports CSS strings and responsive objects.
@@ -208,13 +214,13 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
    */
-  flexShrink: {
-    type: 'enum | string',
-    className: 'rt-r-fs',
-    customProperties: ['--flex-shrink'],
-    values: flexShrinkValues,
-    responsive: true,
-  },
+  // flexShrink: {
+  //   type: "enum | string",
+  //   prefix: "shrink",
+  //   customProperties: ["--flex-shrink"],
+  //   values: flexShrinkValues,
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **flex-grow** property.
    * Supports CSS strings and responsive objects.
@@ -227,13 +233,13 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
    */
-  flexGrow: {
-    type: 'enum | string',
-    className: 'rt-r-fg',
-    customProperties: ['--flex-grow'],
-    values: flexGrowValues,
-    responsive: true,
-  },
+  // flexGrow: {
+  //   type: "enum | string",
+  //   prefix: "grow",
+  //   customProperties: ["--flex-grow"],
+  //   values: flexGrowValues,
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-area** property.
    * Supports CSS strings and responsive objects.
@@ -244,12 +250,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area
    */
-  gridArea: {
-    type: 'string',
-    className: 'rt-r-ga',
-    customProperties: ['--grid-area'],
-    responsive: true,
-  },
+  // gridArea: {
+  //   type: "string",
+  //   prefix: "ga",
+  //   customProperties: ["--grid-area"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-column** property.
    * Supports CSS strings and responsive objects.
@@ -262,12 +268,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
    */
-  gridColumn: {
-    type: 'string',
-    className: 'rt-r-gc',
-    customProperties: ['--grid-column'],
-    responsive: true,
-  },
+  // gridColumn: {
+  //   type: "string",
+  //   prefix: "gc",
+  //   customProperties: ["--grid-column"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-column-start** property.
    * Supports CSS strings and responsive objects.
@@ -280,12 +286,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start
    */
-  gridColumnStart: {
-    type: 'string',
-    className: 'rt-r-gcs',
-    customProperties: ['--grid-column-start'],
-    responsive: true,
-  },
+  // gridColumnStart: {
+  //   type: "string",
+  //   prefix: "gcs",
+  //   customProperties: ["--grid-column-start"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-column-end** property.
    * Supports CSS strings and responsive objects.
@@ -298,12 +304,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-end
    */
-  gridColumnEnd: {
-    type: 'string',
-    className: 'rt-r-gce',
-    customProperties: ['--grid-column-end'],
-    responsive: true,
-  },
+  // gridColumnEnd: {
+  //   type: "string",
+  //   prefix: "gce",
+  //   customProperties: ["--grid-column-end"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-row** property.
    * Supports CSS strings and responsive objects.
@@ -316,12 +322,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row
    */
-  gridRow: {
-    type: 'string',
-    className: 'rt-r-gr',
-    customProperties: ['--grid-row'],
-    responsive: true,
-  },
+  // gridRow: {
+  //   type: "string",
+  //   prefix: "gr",
+  //   customProperties: ["--grid-row"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-row-start** property.
    * Supports CSS strings and responsive objects.
@@ -334,12 +340,12 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-start
    */
-  gridRowStart: {
-    type: 'string',
-    className: 'rt-r-grs',
-    customProperties: ['--grid-row-start'],
-    responsive: true,
-  },
+  // gridRowStart: {
+  //   type: "string",
+  //   prefix: "grs",
+  //   customProperties: ["--grid-row-start"],
+  //   responsive: true,
+  // },
   /**
    * Sets the CSS **grid-row-end** property.
    * Supports CSS strings and responsive objects.
@@ -352,38 +358,41 @@ const layoutPropDefs = {
    * @link
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row-end
    */
-  gridRowEnd: {
-    type: 'string',
-    className: 'rt-r-gre',
-    customProperties: ['--grid-row-end'],
-    responsive: true,
-  },
+  // gridRowEnd: {
+  //   type: "string",
+  //   prefix: "gre",
+  //   customProperties: ["--grid-row-end"],
+  //   responsive: true,
+  // },
 } satisfies {
-  position: PropDef<(typeof positionValues)[number]>;
-  inset: PropDef<(typeof positionEdgeValues)[number]>;
-  top: PropDef<(typeof positionEdgeValues)[number]>;
-  right: PropDef<(typeof positionEdgeValues)[number]>;
-  bottom: PropDef<(typeof positionEdgeValues)[number]>;
-  left: PropDef<(typeof positionEdgeValues)[number]>;
-  overflow: PropDef<(typeof overflowValues)[number]>;
-  overflowX: PropDef<(typeof overflowValues)[number]>;
-  overflowY: PropDef<(typeof overflowValues)[number]>;
-  flexBasis: PropDef<string>;
-  flexShrink: PropDef<(typeof flexShrinkValues)[number]>;
-  flexGrow: PropDef<(typeof flexGrowValues)[number]>;
-  gridColumn: PropDef<string>;
-  gridColumnStart: PropDef<string>;
-  gridColumnEnd: PropDef<string>;
-  gridRow: PropDef<string>;
-  gridRowStart: PropDef<string>;
-  gridRowEnd: PropDef<string>;
-  gridArea: PropDef<string>;
-};
+  position: PropDef<(typeof positionValues)[number]>
+  inset: PropDef<(typeof positionEdgeValues)[number]>
+  top: PropDef<(typeof positionEdgeValues)[number]>
+  right: PropDef<(typeof positionEdgeValues)[number]>
+  bottom: PropDef<(typeof positionEdgeValues)[number]>
+  left: PropDef<(typeof positionEdgeValues)[number]>
+  overflow: PropDef<(typeof overflowValues)[number]>
+  overflowX: PropDef<(typeof overflowValues)[number]>
+  overflowY: PropDef<(typeof overflowValues)[number]>
+  // flexBasis: PropDef<string>
+  // flexShrink: PropDef<(typeof flexShrinkValues)[number]>
+  // flexGrow: PropDef<(typeof flexGrowValues)[number]>
+  // gridColumn: PropDef<string>
+  // gridColumnStart: PropDef<string>
+  // gridColumnEnd: PropDef<string>
+  // gridRow: PropDef<string>
+  // gridRowStart: PropDef<string>
+  // gridRowEnd: PropDef<string>
+  // gridArea: PropDef<string>
+}
 
 // Use all of the imported prop defs to ensure that JSDoc works
 type LayoutProps = GetPropDefTypes<
-  typeof paddingPropDefs & typeof widthPropDefs & typeof heightPropDefs & typeof layoutPropDefs
->;
+  typeof paddingPropDefs &
+    typeof widthPropDefs &
+    typeof heightPropDefs &
+    typeof layoutPropDefs
+>
 
-export { layoutPropDefs };
-export type { LayoutProps };
+export { layoutPropDefs }
+export type { LayoutProps }

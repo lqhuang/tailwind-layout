@@ -1,34 +1,42 @@
-import { breakpoints } from '../props/prop-def.js';
-import { hasOwnProperty } from './has-own-property.js';
-import { isResponsiveObject } from './is-responsive-object.js';
+import type { Responsive, Union } from '../props/prop-def'
 
-import type { Responsive, Union } from '../props/prop-def.js';
+import { breakpoints } from '../props/prop-def'
+
+import { hasOwnProperty } from './has-own-property'
+import { isResponsiveObject } from './is-responsive-object'
 
 interface GetResponsiveStylesOptions {
-  className: string;
-  customProperties: `--${string}`[];
-  value: Responsive<Union> | Responsive<string> | undefined;
-  propValues: string[] | readonly string[];
-  parseValue?: (value: string) => string | undefined;
+  className: string
+  customProperties: `--${string}`[]
+  value: Responsive<Union> | Responsive<string> | undefined
+  propValues: string[] | readonly string[]
+  parseValue?: (value: string) => string | undefined
 }
 
-function getResponsiveStyles({ className, customProperties, ...args }: GetResponsiveStylesOptions) {
+function getResponsiveStyles({
+  className,
+  customProperties,
+  ...args
+}: GetResponsiveStylesOptions) {
   const responsiveClassNames = getResponsiveClassNames({
     allowArbitraryValues: true,
     className,
     ...args,
-  });
+  })
 
-  const responsiveCustomProperties = getResponsiveCustomProperties({ customProperties, ...args });
-  return [responsiveClassNames, responsiveCustomProperties] as const;
+  const responsiveCustomProperties = getResponsiveCustomProperties({
+    customProperties,
+    ...args,
+  })
+  return [responsiveClassNames, responsiveCustomProperties] as const
 }
 
 interface GetResponsiveClassNamesOptions {
-  allowArbitraryValues?: boolean;
-  className: string;
-  value: Responsive<Union> | Responsive<string> | undefined;
-  propValues: string[] | readonly string[];
-  parseValue?: (value: string) => string | undefined;
+  allowArbitraryValues?: boolean
+  className: string
+  value: Responsive<Union> | Responsive<string> | undefined
+  propValues: string[] | readonly string[]
+  parseValue?: (value: string) => string | undefined
 }
 
 function getResponsiveClassNames({
@@ -36,121 +44,128 @@ function getResponsiveClassNames({
   value,
   className,
   propValues,
-  parseValue = (value) => value,
+  parseValue = value => value,
 }: GetResponsiveClassNamesOptions): string | undefined {
-  const classNames: string[] = [];
+  const classNames: string[] = []
 
   if (!value) {
-    return undefined;
+    return undefined
   }
 
   if (typeof value === 'string' && propValues.includes(value)) {
-    return getBaseClassName(className, value, parseValue);
+    return getBaseClassName(className, value, parseValue)
   }
 
   if (isResponsiveObject(value)) {
-    const object = value;
+    const object = value
 
     for (const bp in object) {
       // Make sure we are not iterating over keys that aren't breakpoints
       if (!hasOwnProperty(object, bp) || !breakpoints.includes(bp)) {
-        continue;
+        continue
       }
 
-      const value = object[bp];
+      const value = object[bp]
 
       if (value !== undefined) {
         if (propValues.includes(value)) {
-          const baseClassName = getBaseClassName(className, value, parseValue);
-          const bpClassName = bp === 'initial' ? baseClassName : `${bp}:${baseClassName}`;
-          classNames.push(bpClassName);
+          const baseClassName = getBaseClassName(className, value, parseValue)
+          const bpClassName =
+            bp === 'initial' ? baseClassName : `${bp}:${baseClassName}`
+          classNames.push(bpClassName)
         } else if (allowArbitraryValues) {
-          const bpClassName = bp === 'initial' ? className : `${bp}:${className}`;
-          classNames.push(bpClassName);
+          const bpClassName =
+            bp === 'initial' ? className : `${bp}:${className}`
+          classNames.push(bpClassName)
         }
       }
     }
 
-    return classNames.join(' ');
+    return classNames.join(' ')
   }
 
   if (allowArbitraryValues) {
-    return className;
+    return className
   }
 }
 
 function getBaseClassName(
   className: string,
   value: string,
-  parseValue: (value: string) => string | undefined
+  parseValue: (value: string) => string | undefined,
 ): string {
-  const delimiter = className ? '-' : '';
-  const matchedValue = parseValue(value);
-  const isNegative = matchedValue?.startsWith('-');
-  const minus = isNegative ? '-' : '';
-  const absoluteValue = isNegative ? matchedValue?.substring(1) : matchedValue;
-  return `${minus}${className}${delimiter}${absoluteValue}`;
+  const delimiter = className ? '-' : ''
+  const matchedValue = parseValue(value)
+  const isNegative = matchedValue?.startsWith('-')
+  const minus = isNegative ? '-' : ''
+  const absoluteValue = isNegative ? matchedValue?.substring(1) : matchedValue
+  return `${minus}${className}${delimiter}${absoluteValue}`
 }
 
 interface GetResponsiveCustomPropertiesOptions {
-  customProperties: `--${string}`[];
-  value: Responsive<Union> | Responsive<string> | undefined;
-  propValues: string[] | readonly string[];
-  parseValue?: (value: string) => string | undefined;
+  customProperties: `--${string}`[]
+  value: Responsive<Union> | Responsive<string> | undefined
+  propValues: string[] | readonly string[]
+  parseValue?: (value: string) => string | undefined
 }
 
 function getResponsiveCustomProperties({
   customProperties,
   value,
   propValues,
-  parseValue = (value) => value,
+  parseValue = value => value,
 }: GetResponsiveCustomPropertiesOptions) {
-  let styles: Record<string, string | undefined> = {};
+  let styles: Record<string, string | undefined> = {}
 
   // Don't generate custom properties if the value is not arbitrary
   if (!value || (typeof value === 'string' && propValues.includes(value))) {
-    return undefined;
+    return undefined
   }
 
   if (typeof value === 'string') {
-    styles = Object.fromEntries(customProperties.map((prop) => [prop, value]));
+    styles = Object.fromEntries(customProperties.map(prop => [prop, value]))
   }
 
   if (isResponsiveObject(value)) {
-    const object = value;
+    const object = value
 
     for (const bp in object) {
       // Make sure we are not iterating over keys that aren't breakpoints
       if (!hasOwnProperty(object, bp) || !breakpoints.includes(bp)) {
-        continue;
+        continue
       }
 
-      const value = object[bp];
+      const value = object[bp]
 
       // Don't generate a custom property if the value is not arbitrary
       if (propValues.includes(value)) {
-        continue;
+        continue
       }
 
       for (const customProperty of customProperties) {
-        const bpProperty = bp === 'initial' ? customProperty : `${customProperty}-${bp}`;
+        const bpProperty =
+          bp === 'initial' ? customProperty : `${customProperty}-${bp}`
 
         styles = {
           [bpProperty]: value,
           ...styles,
-        };
+        }
       }
     }
   }
 
   for (const key in styles) {
-    const value = styles[key];
+    const value = styles[key]
     if (value !== undefined) {
-      styles[key] = parseValue(value);
+      styles[key] = parseValue(value)
     }
   }
 
-  return styles;
+  return styles
 }
 
-export { getResponsiveStyles, getResponsiveCustomProperties, getResponsiveClassNames };
+export {
+  getResponsiveClassNames,
+  getResponsiveCustomProperties,
+  getResponsiveStyles,
+}

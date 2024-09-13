@@ -35,7 +35,7 @@ type InputAttributes =
   | 'step'
   | 'type'
   | 'value'
-  | 'width';
+  | 'width'
 
 // Includes all text-like inputs, e.g. text, email, password, number, date, etc.
 type InputTextualAttributes =
@@ -58,7 +58,7 @@ type InputTextualAttributes =
   | 'size'
   | 'step'
   | 'type'
-  | 'value';
+  | 'value'
 
 type InputRadioAttributes =
   | 'checked'
@@ -68,10 +68,13 @@ type InputRadioAttributes =
   | 'form'
   | 'name'
   | 'required'
-  | 'value';
+  | 'value'
 
-type NotInputRadioAttributes = Exclude<InputAttributes, InputRadioAttributes>;
-type NotInputTextualAttributes = Exclude<InputAttributes, InputTextualAttributes>;
+type NotInputRadioAttributes = Exclude<InputAttributes, InputRadioAttributes>
+type NotInputTextualAttributes = Exclude<
+  InputAttributes,
+  InputTextualAttributes
+>
 
 export type {
   InputAttributes,
@@ -79,4 +82,4 @@ export type {
   InputTextualAttributes,
   NotInputRadioAttributes,
   NotInputTextualAttributes,
-};
+}

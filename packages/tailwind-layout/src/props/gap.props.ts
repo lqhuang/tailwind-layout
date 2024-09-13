@@ -1,6 +1,18 @@
-import type { PropDef } from './prop-def.js';
+import type { PropDef } from "./prop-def.js"
 
-const gapValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] as const;
+const gapValues = [
+  "0",
+  "0.5",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+] as const
 
 const gapPropDefs = {
   /**
@@ -13,12 +25,12 @@ const gapPropDefs = {
    * gap={{ sm: '2', lg: '3em' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/gap
+   * https://tailwindcss.com/docs/gap
    */
   gap: {
-    type: 'enum | string',
-    className: 'rt-r-gap',
-    customProperties: ['--gap'],
+    type: "enum | string",
+    prefix: "gap",
+    customProperties: ["--gap"],
     values: gapValues,
     responsive: true,
   },
@@ -32,12 +44,12 @@ const gapPropDefs = {
    * gapX={{ sm: '2', lg: '3em' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap
+   * https://tailwindcss.com/docs/gap
    */
   gapX: {
-    type: 'enum | string',
-    className: 'rt-r-cg',
-    customProperties: ['--column-gap'],
+    type: "enum | string",
+    prefix: "gap-x",
+    customProperties: ["--column-gap"],
     values: gapValues,
     responsive: true,
   },
@@ -51,19 +63,19 @@ const gapPropDefs = {
    * gapY={{ sm: '2', lg: '3em' }}
    *
    * @link
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
+   * https://tailwindcss.com/docs/gap
    */
   gapY: {
-    type: 'enum | string',
-    className: 'rt-r-rg',
-    customProperties: ['--row-gap'],
+    type: "enum | string",
+    prefix: "gap-y",
+    customProperties: ["--row-gap"],
     values: gapValues,
     responsive: true,
   },
 } satisfies {
-  gap: PropDef<(typeof gapValues)[number]>;
-  gapX: PropDef<(typeof gapValues)[number]>;
-  gapY: PropDef<(typeof gapValues)[number]>;
-};
+  gap: PropDef<(typeof gapValues)[number]>
+  gapX: PropDef<(typeof gapValues)[number]>
+  gapY: PropDef<(typeof gapValues)[number]>
+}
 
-export { gapPropDefs };
+export { gapPropDefs }
