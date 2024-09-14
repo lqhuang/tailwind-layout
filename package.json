@@ -1,5 +1,5 @@
 {
-  "name": "root-tailwind-layout",
+  "name": "root-twlayout-ui",
   "private": true,
   "type": "module",
   "workspaces": [
