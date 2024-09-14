@@ -1,59 +1,70 @@
-import * as React from 'react';
-import classNames from 'classnames';
-import { Slot } from '@radix-ui/react-slot';
+import type {
+  ComponentPropsWithout,
+  RemovedProps,
+} from '../helpers/component-props'
+import type { LayoutProps } from '../props/layout.props'
+import type { MarginProps } from '../props/margin.props'
+import type { ContainerOwnProps } from './container.props'
 
-import { containerPropDefs } from './container.props.js';
-import { extractProps } from '../helpers/extract-props.js';
-import { getSubtree } from '../helpers/get-subtree.js';
-import { heightPropDefs } from '../props/height.props.js';
-import { layoutPropDefs } from '../props/layout.props.js';
-import { marginPropDefs } from '../props/margin.props.js';
-import { widthPropDefs } from '../props/width.props.js';
+import * as React from 'react'
 
-import type { LayoutProps } from '../props/layout.props.js';
-import type { MarginProps } from '../props/margin.props.js';
-import type { ContainerOwnProps } from './container.props.js';
-import type { ComponentPropsWithout, RemovedProps } from '../helpers/component-props.js';
+import { Slot } from '@radix-ui/react-slot'
 
-type ContainerElement = React.ElementRef<'div'>;
+import { extractProps } from '../helpers/extract-props'
+import { getSubtree } from '../helpers/get-subtree'
+import { heightPropDefs } from '../props/height.props'
+import { layoutPropDefs } from '../props/layout.props'
+import { marginPropDefs } from '../props/margin.props'
+import { widthPropDefs } from '../props/width.props'
+import { cn } from '../utils'
+
+import { containerPropDefs } from './container.props'
+
+type ContainerElement = React.ElementRef<'div'>
 interface ContainerProps
   extends ComponentPropsWithout<'div', RemovedProps>,
     MarginProps,
     LayoutProps,
     ContainerOwnProps {}
 const Container = React.forwardRef<ContainerElement, ContainerProps>(
-  ({ width, minWidth, maxWidth, height, minHeight, maxHeight, ...props }, forwardedRef) => {
+  (
+    { width, minWidth, maxWidth, height, minHeight, maxHeight, ...props },
+    forwardedRef,
+  ) => {
     const { asChild, children, className, ...containerProps } = extractProps(
       props,
       containerPropDefs,
       layoutPropDefs,
-      marginPropDefs
-    );
+      marginPropDefs,
+    )
 
     const { className: innerClassName, style: innerStyle } = extractProps(
       { width, minWidth, maxWidth, height, minHeight, maxHeight },
       widthPropDefs,
-      heightPropDefs
-    );
+      heightPropDefs,
+    )
 
-    const Comp = asChild ? Slot : 'div';
+    const Comp = asChild ? Slot : 'div'
 
     return (
       <Comp
         {...containerProps}
         ref={forwardedRef}
-        className={classNames('rt-Container', className)}
+        className={cn('rt-Container', className)}
       >
-        {getSubtree({ asChild, children }, (children) => (
-          <div className={classNames('rt-ContainerInner', innerClassName)} style={innerStyle}>
+        {getSubtree({ asChild, children }, children => (
+          <div
+            className={cn('rt-ContainerInner', innerClassName)}
+            style={innerStyle}
+          >
             {children}
           </div>
         ))}
       </Comp>
-    );
-  }
-);
-Container.displayName = 'Container';
+    )
+  },
+)
+Container.displayName = 'Container'
 
-export { Container };
-export type { ContainerProps };
+export { Container }
+export type { ContainerProps }

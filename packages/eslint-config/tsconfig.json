@@ -2,5 +2,7 @@
   "extends": "@twlayout/tsconfig/base.json",
   "compilerOptions": {
     "esModuleInterop": true
-  }
+  },
+  "include": ["./index.js"],
+  "exclude": ["./node_modules"]
 }

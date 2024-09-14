@@ -1,21 +1,21 @@
-import { asChildPropDef } from "../props/as-child.prop.js"
-import { gapPropDefs } from "../props/gap.props.js"
+import { asChildPropDef } from '../props/as-child.prop'
+import { gapPropDefs } from '../props/gap.props'
 
-import type { GetPropDefTypes, PropDef } from "../props/prop-def.js"
+import type { GetPropDefTypes, PropDef } from '../props/prop-def'
 
-const as = ["div", "span"] as const
-const displayValues = ["inline-grid", "grid"] as const
-const columnsValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const
-const rowsValues = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const
+const as = ['div', 'span'] as const
+const displayValues = ['inline-grid', 'grid'] as const
+const columnsValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] as const
+const rowsValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] as const
 const flowValues = [
-  "row",
-  "column",
-  "dense",
-  "row-dense",
-  "column-dense",
+  'row',
+  'column',
+  'dense',
+  'row-dense',
+  'column-dense',
 ] as const
-const alignValues = ["start", "center", "end", "baseline", "stretch"] as const
-const justifyValues = ["start", "center", "end", "between"] as const
+const alignValues = ['start', 'center', 'end', 'baseline', 'stretch'] as const
+const justifyValues = ['start', 'center', 'end', 'between'] as const
 
 const gridPropDefs = {
   /**
@@ -25,7 +25,7 @@ const gridPropDefs = {
    * as="div"
    * as="span"
    */
-  as: { type: "enum", values: as, default: "div" },
+  as: { type: 'enum', values: as, default: 'div' },
   ...asChildPropDef,
   /**
    * Sets the CSS **display** property.
@@ -39,7 +39,7 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/display
    */
   display: {
-    type: "enum",
+    type: 'enum',
     prefix: undefined,
     values: displayValues,
     responsive: true,
@@ -55,9 +55,9 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas
    */
   areas: {
-    type: "string",
-    prefix: "rt-r-gta",
-    customProperties: ["--grid-template-areas"],
+    type: 'string',
+    prefix: 'rt-r-gta',
+    customProperties: ['--grid-template-areas'],
     responsive: true,
   },
   /**
@@ -75,9 +75,9 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
    */
   columns: {
-    type: "enum | string",
-    prefix: "rt-r-gtc",
-    customProperties: ["--grid-template-columns"],
+    type: 'enum | string',
+    prefix: 'rt-r-gtc',
+    customProperties: ['--grid-template-columns'],
     values: columnsValues,
     parseValue: parseGridValue,
     responsive: true,
@@ -97,9 +97,9 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows
    */
   rows: {
-    type: "enum | string",
-    prefix: "rt-r-gtr",
-    customProperties: ["--grid-template-rows"],
+    type: 'enum | string',
+    prefix: 'rt-r-gtr',
+    customProperties: ['--grid-template-rows'],
     values: rowsValues,
     parseValue: parseGridValue,
     responsive: true,
@@ -116,8 +116,8 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow
    */
   flow: {
-    type: "enum",
-    prefix: "rt-r-gaf",
+    type: 'enum',
+    prefix: 'rt-r-gaf',
     values: flowValues,
     responsive: true,
   },
@@ -133,8 +133,8 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
    */
   align: {
-    type: "enum",
-    prefix: "rt-r-ai",
+    type: 'enum',
+    prefix: 'rt-r-ai',
     values: alignValues,
     responsive: true,
   },
@@ -150,8 +150,8 @@ const gridPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
    */
   justify: {
-    type: "enum",
-    prefix: "rt-r-jc",
+    type: 'enum',
+    prefix: 'rt-r-jc',
     values: justifyValues,
     parseValue: parseJustifyValue,
     responsive: true,
@@ -177,7 +177,7 @@ function parseGridValue(value: string): string {
 }
 
 function parseJustifyValue(value: string) {
-  return value === "between" ? "space-between" : value
+  return value === 'between' ? 'space-between' : value
 }
 
 // Use all of the imported prop defs to ensure that JSDoc works

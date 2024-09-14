@@ -1,17 +1,17 @@
-import type { PropDef } from "./prop-def.js"
+import type { PropDef } from './prop-def'
 
 const gapValues = [
-  "0",
-  "0.5",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
+  '0',
+  '0.5',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
 ] as const
 
 const gapPropDefs = {
@@ -28,9 +28,9 @@ const gapPropDefs = {
    * https://tailwindcss.com/docs/gap
    */
   gap: {
-    type: "enum | string",
-    prefix: "gap",
-    customProperties: ["--gap"],
+    type: 'enum | string',
+    prefix: 'gap',
+    customProperties: ['--gap'],
     values: gapValues,
     responsive: true,
   },
@@ -47,9 +47,9 @@ const gapPropDefs = {
    * https://tailwindcss.com/docs/gap
    */
   gapX: {
-    type: "enum | string",
-    prefix: "gap-x",
-    customProperties: ["--column-gap"],
+    type: 'enum | string',
+    prefix: 'gap-x',
+    customProperties: ['--column-gap'],
     values: gapValues,
     responsive: true,
   },
@@ -66,9 +66,9 @@ const gapPropDefs = {
    * https://tailwindcss.com/docs/gap
    */
   gapY: {
-    type: "enum | string",
-    prefix: "gap-y",
-    customProperties: ["--row-gap"],
+    type: 'enum | string',
+    prefix: 'gap-y',
+    customProperties: ['--row-gap'],
     values: gapValues,
     responsive: true,
   },

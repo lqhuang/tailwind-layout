@@ -1,4 +1,4 @@
-import type { GetPropDefTypes, PropDef } from "./prop-def.js"
+import type { GetPropDefTypes, PropDef } from './prop-def'
 
 const widthPropDefs = {
   /**
@@ -13,9 +13,9 @@ const widthPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/width
    */
   width: {
-    type: "string",
-    prefix: "w",
-    customProperties: ["--width"],
+    type: 'string',
+    prefix: 'w',
+    customProperties: ['--width'],
     responsive: true,
   },
   /**
@@ -30,9 +30,9 @@ const widthPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/min-width
    */
   minWidth: {
-    type: "string",
-    prefix: "min-w",
-    customProperties: ["--min-width"],
+    type: 'string',
+    prefix: 'min-w',
+    customProperties: ['--min-width'],
     responsive: true,
   },
   /**
@@ -47,9 +47,9 @@ const widthPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/max-width
    */
   maxWidth: {
-    type: "string",
-    prefix: "max-w",
-    customProperties: ["--max-width"],
+    type: 'string',
+    prefix: 'max-w',
+    customProperties: ['--max-width'],
     responsive: true,
   },
 } satisfies {

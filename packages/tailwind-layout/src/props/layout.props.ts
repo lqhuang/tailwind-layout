@@ -1,21 +1,21 @@
-import { heightPropDefs } from "./height.props.js"
-import { paddingPropDefs } from "./padding.props.js"
-import { widthPropDefs } from "./width.props.js"
+import type { GetPropDefTypes, PropDef } from './prop-def'
 
-import type { GetPropDefTypes, PropDef } from "./prop-def.js"
+import { heightPropDefs } from './height.props'
+import { paddingPropDefs } from './padding.props'
+import { widthPropDefs } from './width.props'
 
-const overflowValues = ["visible", "hidden", "clip", "scroll", "auto"] as const
+const overflowValues = ['visible', 'hidden', 'clip', 'scroll', 'auto'] as const
 const positionValues = [
-  "static",
-  "fixed",
-  "absolute",
-  "relative",
-  "sticky",
+  'static',
+  'fixed',
+  'absolute',
+  'relative',
+  'sticky',
 ] as const
 // prettier-ignore
 const positionEdgeValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9'] as const;
-const flexShrinkValues = ["0", "1"] as const
-const flexGrowValues = ["0", "1"] as const
+const flexShrinkValues = ['0', '1'] as const
+const flexGrowValues = ['0', '1'] as const
 
 const layoutPropDefs = {
   ...paddingPropDefs,
@@ -33,7 +33,7 @@ const layoutPropDefs = {
    * https://tailwindcss.com/docs/position
    */
   position: {
-    type: "enum",
+    type: 'enum',
     prefix: undefined,
     values: positionValues,
     responsive: true,
@@ -51,9 +51,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/inset
    */
   inset: {
-    type: "enum | string",
-    prefix: "inset",
-    customProperties: ["--inset"],
+    type: 'enum | string',
+    prefix: 'inset',
+    customProperties: ['--inset'],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -70,9 +70,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/top
    */
   top: {
-    type: "enum | string",
-    prefix: "top",
-    customProperties: ["--top"],
+    type: 'enum | string',
+    prefix: 'top',
+    customProperties: ['--top'],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -89,9 +89,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/right
    */
   right: {
-    type: "enum | string",
-    prefix: "right",
-    customProperties: ["--right"],
+    type: 'enum | string',
+    prefix: 'right',
+    customProperties: ['--right'],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -108,9 +108,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
    */
   bottom: {
-    type: "enum | string",
-    prefix: "bottom",
-    customProperties: ["--bottom"],
+    type: 'enum | string',
+    prefix: 'bottom',
+    customProperties: ['--bottom'],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -127,9 +127,9 @@ const layoutPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/left
    */
   left: {
-    type: "enum | string",
-    prefix: "left",
-    customProperties: ["--left"],
+    type: 'enum | string',
+    prefix: 'left',
+    customProperties: ['--left'],
     values: positionEdgeValues,
     responsive: true,
   },
@@ -145,8 +145,8 @@ const layoutPropDefs = {
    * https://tailwindcss.com/docs/overflow
    */
   overflow: {
-    type: "enum",
-    prefix: "overflow",
+    type: 'enum',
+    prefix: 'overflow',
     values: overflowValues,
     responsive: true,
   },
@@ -162,8 +162,8 @@ const layoutPropDefs = {
    * https://tailwindcss.com/docs/overflow
    */
   overflowX: {
-    type: "enum",
-    prefix: "ox",
+    type: 'enum',
+    prefix: 'ox',
     values: overflowValues,
     responsive: true,
   },
@@ -179,8 +179,8 @@ const layoutPropDefs = {
    * https://tailwindcss.com/docs/overflow
    */
   overflowY: {
-    type: "enum",
-    prefix: "oy",
+    type: 'enum',
+    prefix: 'oy',
     values: overflowValues,
     responsive: true,
   },

@@ -1,23 +1,23 @@
-import { asChildPropDef } from "../props/as-child.prop"
-import { gapPropDefs } from "../props/gap.props"
+import { asChildPropDef } from '../props/as-child.prop'
+import { gapPropDefs } from '../props/gap.props'
 
-import type { GetPropDefTypes, PropDef } from "../props/prop-def"
+import type { GetPropDefTypes, PropDef } from '../props/prop-def'
 
-const as = ["div", "span"] as const
-const displayValues = ["hidden", "inline-flex", "flex"] as const
-const directionValues = ["row", "col", "row-reverse", "col-reverse"] as const
-const alignValues = ["start", "end", "center", "baseline", "stretch"] as const
+const as = ['div', 'span'] as const
+const displayValues = ['hidden', 'inline-flex', 'flex'] as const
+const directionValues = ['row', 'col', 'row-reverse', 'col-reverse'] as const
+const alignValues = ['start', 'end', 'center', 'baseline', 'stretch'] as const
 const justifyValues = [
-  "normal",
-  "start",
-  "end",
-  "center",
-  "between",
-  "around",
-  "evenly",
-  "stretch",
+  'normal',
+  'start',
+  'end',
+  'center',
+  'between',
+  'around',
+  'evenly',
+  'stretch',
 ] as const
-const wrapValues = ["nowrap", "wrap", "wrap-reverse"] as const
+const wrapValues = ['nowrap', 'wrap', 'wrap-reverse'] as const
 
 const flexPropDefs = {
   ...asChildPropDef,
@@ -28,7 +28,7 @@ const flexPropDefs = {
    * as="div"
    * as="span"
    */
-  as: { type: "enum", values: as, default: "div" },
+  as: { type: 'enum', values: as, default: 'div' },
 
   /**
    * Sets the CSS **display** property.
@@ -42,11 +42,11 @@ const flexPropDefs = {
    * https://tailwindcss.com/docs/display
    */
   display: {
-    type: "enum",
-    prefix: "",
+    type: 'enum',
+    prefix: '',
     values: displayValues,
     responsive: true,
-    default: "flex",
+    default: 'flex',
   },
 
   /**
@@ -61,8 +61,8 @@ const flexPropDefs = {
    * https://tailwindcss.com/docs/flex-direction
    */
   direction: {
-    type: "enum",
-    prefix: "flex",
+    type: 'enum',
+    prefix: 'flex',
     values: directionValues,
     responsive: true,
   },
@@ -78,8 +78,8 @@ const flexPropDefs = {
    * https://tailwindcss.com/docs/align-items
    */
   align: {
-    type: "enum",
-    prefix: "align",
+    type: 'enum',
+    prefix: 'align',
     values: alignValues,
     responsive: true,
   },
@@ -95,8 +95,8 @@ const flexPropDefs = {
    * https://tailwindcss.com/docs/justify-content
    */
   justify: {
-    type: "enum",
-    prefix: "justify",
+    type: 'enum',
+    prefix: 'justify',
     values: justifyValues,
     responsive: true,
   },
@@ -112,8 +112,8 @@ const flexPropDefs = {
    * https://tailwindcss.com/docs/flex-wrap
    */
   wrap: {
-    type: "enum",
-    prefix: "wrap",
+    type: 'enum',
+    prefix: 'wrap',
     values: wrapValues,
     responsive: true,
   },

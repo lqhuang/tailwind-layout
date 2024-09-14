@@ -1,16 +1,16 @@
-import type { GetPropDefTypes, PropDef } from "./prop-def.js"
+import type { GetPropDefTypes, PropDef } from './prop-def'
 
 const paddingValues = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
 ] as const
 
 const paddingPropDefs = {
@@ -27,9 +27,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding
    */
   p: {
-    type: "enum | string",
-    prefix: "p",
-    customProperties: ["--p"],
+    type: 'enum | string',
+    prefix: 'p',
+    customProperties: ['--p'],
     values: paddingValues,
     responsive: true,
   },
@@ -47,9 +47,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right
    */
   px: {
-    type: "enum | string",
-    prefix: "px",
-    customProperties: ["--pl", "--pr"],
+    type: 'enum | string',
+    prefix: 'px',
+    customProperties: ['--pl', '--pr'],
     values: paddingValues,
     responsive: true,
   },
@@ -67,9 +67,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom
    */
   py: {
-    type: "enum | string",
-    prefix: "py",
-    customProperties: ["--pt", "--pb"],
+    type: 'enum | string',
+    prefix: 'py',
+    customProperties: ['--pt', '--pb'],
     values: paddingValues,
     responsive: true,
   },
@@ -86,9 +86,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top
    */
   pt: {
-    type: "enum | string",
-    prefix: "pt",
-    customProperties: ["--pt"],
+    type: 'enum | string',
+    prefix: 'pt',
+    customProperties: ['--pt'],
     values: paddingValues,
     responsive: true,
   },
@@ -105,9 +105,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right
    */
   pr: {
-    type: "enum | string",
-    prefix: "pr",
-    customProperties: ["--pr"],
+    type: 'enum | string',
+    prefix: 'pr',
+    customProperties: ['--pr'],
     values: paddingValues,
     responsive: true,
   },
@@ -124,9 +124,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom
    */
   pb: {
-    type: "enum | string",
-    prefix: "pb",
-    customProperties: ["--pb"],
+    type: 'enum | string',
+    prefix: 'pb',
+    customProperties: ['--pb'],
     values: paddingValues,
     responsive: true,
   },
@@ -143,9 +143,9 @@ const paddingPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left
    */
   pl: {
-    type: "enum | string",
-    prefix: "pl",
-    customProperties: ["--pl"],
+    type: 'enum | string',
+    prefix: 'pl',
+    customProperties: ['--pl'],
     values: paddingValues,
     responsive: true,
   },

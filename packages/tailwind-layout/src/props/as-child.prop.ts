@@ -1,4 +1,4 @@
-import type { PropDef } from "./prop-def.js"
+import type { PropDef } from './prop-def'
 
 const asChildPropDef = {
   /**
@@ -6,7 +6,7 @@ const asChildPropDef = {
    * You’ll have to provide a single React Element child.
    */
   asChild: {
-    type: "boolean",
+    type: 'boolean',
   },
 } satisfies {
   asChild: PropDef<boolean>

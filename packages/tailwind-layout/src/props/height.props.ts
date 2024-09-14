@@ -1,4 +1,4 @@
-import type { GetPropDefTypes, PropDef } from "./prop-def.js"
+import type { GetPropDefTypes, PropDef } from './prop-def'
 
 const heightPropDefs = {
   /**
@@ -13,9 +13,9 @@ const heightPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/height
    */
   height: {
-    type: "string",
-    prefix: "h",
-    customProperties: ["--height"],
+    type: 'string',
+    prefix: 'h',
+    customProperties: ['--height'],
     responsive: true,
   },
   /**
@@ -30,9 +30,9 @@ const heightPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
    */
   minHeight: {
-    type: "string",
-    prefix: "min-h",
-    customProperties: ["--min-height"],
+    type: 'string',
+    prefix: 'min-h',
+    customProperties: ['--min-height'],
     responsive: true,
   },
   /**
@@ -47,9 +47,9 @@ const heightPropDefs = {
    * https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
    */
   maxHeight: {
-    type: "string",
-    prefix: "max-h",
-    customProperties: ["--max-height"],
+    type: 'string',
+    prefix: 'max-h',
+    customProperties: ['--max-height'],
     responsive: true,
   },
 } satisfies {

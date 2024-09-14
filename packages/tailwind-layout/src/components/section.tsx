@@ -1,24 +1,25 @@
 import type {
   ComponentPropsWithout,
   RemovedProps,
-} from "../helpers/component-props.js"
-import type { LayoutProps } from "../props/layout.props.js"
-import type { MarginProps } from "../props/margin.props.js"
-import type { SectionOwnProps } from "./section.props.js"
+} from '../helpers/component-props'
+import type { LayoutProps } from '../props/layout.props'
+import type { MarginProps } from '../props/margin.props'
+import type { SectionOwnProps } from './section.props'
 
-import * as React from "react"
+import * as React from 'react'
 
-import { Slot } from "@radix-ui/react-slot"
-import { cn } from "../utils.js"
+import { Slot } from '@radix-ui/react-slot'
 
-import { extractProps } from "../helpers/extract-props.js"
-import { layoutPropDefs } from "../props/layout.props.js"
-import { marginPropDefs } from "../props/margin.props.js"
-import { sectionPropDefs } from "./section.props.js"
+import { extractProps } from '../helpers/extract-props'
+import { layoutPropDefs } from '../props/layout.props'
+import { marginPropDefs } from '../props/margin.props'
+import { cn } from '../utils'
 
-type SectionElement = React.ElementRef<"div">
+import { sectionPropDefs } from './section.props'
+
+type SectionElement = React.ElementRef<'div'>
 interface SectionProps
-  extends ComponentPropsWithout<"div", RemovedProps>,
+  extends ComponentPropsWithout<'div', RemovedProps>,
     MarginProps,
     LayoutProps,
     SectionOwnProps {}
@@ -28,19 +29,19 @@ const Section = React.forwardRef<SectionElement, SectionProps>(
       props,
       sectionPropDefs,
       layoutPropDefs,
-      marginPropDefs
+      marginPropDefs,
     )
-    const Comp = asChild ? Slot : "section"
+    const Comp = asChild ? Slot : 'section'
     return (
       <Comp
         {...sectionProps}
         ref={forwardedRef}
-        className={cn("rt-Section", className)}
+        className={cn('rt-Section', className)}
       />
     )
-  }
+  },
 )
-Section.displayName = "Section"
+Section.displayName = 'Section'
 
 export { Section }
 export type { SectionProps }

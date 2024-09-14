@@ -1,26 +1,26 @@
-import * as React from "react"
-
-import { cn } from "../utils"
-
-import { extractProps } from "../helpers/extract-props.js"
-import { layoutPropDefs } from "../props/layout.props.js"
-import { marginPropDefs } from "../props/margin.props.js"
-import { gridPropDefs } from "./grid.props.js"
-import { Slot } from "./slot.js"
-
 import type {
   ComponentPropsWithout,
   RemovedProps,
-} from "../helpers/component-props.js"
-import type { LayoutProps } from "../props/layout.props.js"
-import type { MarginProps } from "../props/margin.props.js"
-import type { GridOwnProps } from "./grid.props.js"
+} from '../helpers/component-props'
+import type { LayoutProps } from '../props/layout.props'
+import type { MarginProps } from '../props/margin.props'
+import type { GridOwnProps } from './grid.props'
 
-type GridElement = React.ElementRef<"div">
+import * as React from 'react'
+
+import { extractProps } from '../helpers/extract-props'
+import { layoutPropDefs } from '../props/layout.props'
+import { marginPropDefs } from '../props/margin.props'
+import { cn } from '../utils'
+
+import { gridPropDefs } from './grid.props'
+import { Slot } from './slot'
+
+type GridElement = React.ElementRef<'div'>
 interface CommonGridProps extends MarginProps, LayoutProps, GridOwnProps {}
-type GridDivProps = { as?: "div" } & ComponentPropsWithout<"div", RemovedProps>
-type GridSpanProps = { as: "span" } & ComponentPropsWithout<
-  "span",
+type GridDivProps = { as?: 'div' } & ComponentPropsWithout<'div', RemovedProps>
+type GridSpanProps = { as: 'span' } & ComponentPropsWithout<
+  'span',
   RemovedProps
 >
 type GridProps = CommonGridProps & (GridSpanProps | GridDivProps)
@@ -29,7 +29,7 @@ const Grid = React.forwardRef<GridElement, GridProps>((props, forwardedRef) => {
   const {
     className,
     asChild,
-    as: Tag = "div",
+    as: Tag = 'div',
     ...gridProps
   } = extractProps(props, gridPropDefs, layoutPropDefs, marginPropDefs)
   const Comp = asChild ? Slot : Tag
@@ -37,11 +37,11 @@ const Grid = React.forwardRef<GridElement, GridProps>((props, forwardedRef) => {
     <Comp
       {...gridProps}
       ref={forwardedRef}
-      className={cn("rt-Grid", className)}
+      className={cn('rt-Grid', className)}
     />
   )
 })
-Grid.displayName = "Grid"
+Grid.displayName = 'Grid'
 
 export { Grid }
 export type { GridProps }

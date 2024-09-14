@@ -1,9 +1,9 @@
-import { asChildPropDef } from "../props/as-child.prop.js"
+import { asChildPropDef } from '../props/as-child.prop'
 
-import type { GetPropDefTypes, PropDef } from "../props/prop-def.js"
+import type { GetPropDefTypes, PropDef } from '../props/prop-def'
 
-const sizes = ["1", "2", "3", "4"] as const
-const displayValues = ["none", "initial"] as const
+const sizes = ['1', '2', '3', '4'] as const
+const displayValues = ['none', 'initial'] as const
 
 const sectionPropDefs = {
   ...asChildPropDef,
@@ -26,10 +26,10 @@ const sectionPropDefs = {
    * https://github.com/radix-ui/themes/blob/main/packages/radix-ui-themes/src/components/section.css
    */
   size: {
-    type: "enum",
-    prefix: "rt-r-size",
+    type: 'enum',
+    prefix: 'rt-r-size',
     values: sizes,
-    default: "3",
+    default: '3',
     responsive: true,
   },
   /**
@@ -41,8 +41,8 @@ const sectionPropDefs = {
    * display={{ sm: 'none', lg: 'initial' }}
    */
   display: {
-    type: "enum",
-    prefix: "rt-r-display",
+    type: 'enum',
+    prefix: 'rt-r-display',
     values: displayValues,
     parseValue: parseDisplayValue,
     responsive: true,
@@ -53,7 +53,7 @@ const sectionPropDefs = {
 }
 
 function parseDisplayValue(value: string) {
-  return value === "initial" ? "block" : value
+  return value === 'initial' ? 'block' : value
 }
 
 // Use all of the imported prop defs to ensure that JSDoc works
