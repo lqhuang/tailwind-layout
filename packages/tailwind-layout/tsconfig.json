@@ -1,18 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "lib": ["DOM", "ESNext", "DOM.Iterable"],
-    "jsx": "react",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "isolatedModules": true,
-    "outDir": "dist",
-    "strict": true,
-    "strictNullChecks": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
-    "incremental": true
-  }
+  "extends": "@twlayout/tsconfig/base.json",
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,17 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-import type * as React from 'react'
-import type { PropDef } from '../props/prop-def.js'
+import type * as React from "react"
+import type { PropDef } from "../props/prop-def.js"
 
-import { cn } from '../utils'
+import { cn } from "../utils"
 
 import {
   getResponsiveClassNames,
   getResponsiveStyles,
-} from './get-responsive-styles.js'
-import { isResponsiveObject } from './is-responsive-object.js'
-import { mergeStyles } from './merge-styles.js'
+} from "./get-responsive-styles.js"
+import { isResponsiveObject } from "./is-responsive-object.js"
+import { mergeStyles } from "./merge-styles.js"
 
 type PropDefsWithClassName<T> =
   T extends Record<string, PropDef>
@@ -61,7 +58,7 @@ function extractProps<
     }
 
     // Apply the default value if the value is not a valid enum value
-    if (propDef.type === 'enum') {
+    if (propDef.type === "enum") {
       const values = [propDef.default, ...propDef.values]
 
       if (!values.includes(value) && !isResponsiveObject(value)) {
@@ -72,10 +69,10 @@ function extractProps<
     // Apply the value with defaults
     ;(extractedProps as Record<string, any>)[key] = value
 
-    if ('className' in propDef && propDef.className) {
+    if ("className" in propDef && propDef.className) {
       delete extractedProps[key]
 
-      const isResponsivePropDef = 'responsive' in propDef
+      const isResponsivePropDef = "responsive" in propDef
       // Make sure we are not threading through responsive values for non-responsive prop defs
       if (!value || (isResponsiveObject(value) && !isResponsivePropDef)) {
         continue
@@ -88,7 +85,7 @@ function extractProps<
         }
 
         // Apply the default value to the `initial` breakpoint when it is not a valid enum value
-        if (propDef.type === 'enum') {
+        if (propDef.type === "enum") {
           const values = [propDef.default, ...propDef.values]
 
           if (!values.includes(value.initial)) {
@@ -97,7 +94,7 @@ function extractProps<
         }
       }
 
-      if (propDef.type === 'enum') {
+      if (propDef.type === "enum") {
         const propClassName = getResponsiveClassNames({
           allowArbitraryValues: false,
           value,
@@ -110,8 +107,8 @@ function extractProps<
         continue
       }
 
-      if (propDef.type === 'string' || propDef.type === 'enum | string') {
-        const propDefValues = propDef.type === 'string' ? [] : propDef.values
+      if (propDef.type === "string" || propDef.type === "enum | string") {
+        const propDefValues = propDef.type === "string" ? [] : propDef.values
 
         const [propClassNames, propCustomProperties] = getResponsiveStyles({
           className: propDef.className,
@@ -126,7 +123,7 @@ function extractProps<
         continue
       }
 
-      if (propDef.type === 'boolean' && value) {
+      if (propDef.type === "boolean" && value) {
         // TODO handle responsive boolean props
         className = cn(className, propDef.className)
         continue

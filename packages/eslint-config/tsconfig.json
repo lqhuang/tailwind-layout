@@ -1,0 +1,6 @@
+{
+  "extends": "@twlayout/tsconfig/base.json",
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}

@@ -1,8 +1,7 @@
 {
-  "name": "monorepo",
+  "name": "root-tailwind-layout",
   "private": true,
   "workspaces": [
-    "apps/*",
     "packages/*"
   ],
   "scripts": {
@@ -12,11 +11,11 @@
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "eslint": "8.29.0",
-    "eslint-config-custom": "*",
-    "turbo": "2.0.3"
+    "@twlayout/eslint-config": "link:packages/eslint-config",
+    "@twlayout/tsconfig": "link:packages/tsconfig",
+    "eslint": "^9.10.0",
+    "prettier": "^3.3.3",
+    "turbo": "^2.1.2"
   },
-  "resolutions": {
-    "**/string-width": "4.2.3"
-  }
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }

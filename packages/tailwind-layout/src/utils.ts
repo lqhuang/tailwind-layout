@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/order
 import type { ClassValue } from "clsx"
 
 import { clsx } from "clsx"
